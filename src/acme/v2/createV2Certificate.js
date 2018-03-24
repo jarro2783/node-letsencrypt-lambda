@@ -1,7 +1,7 @@
 const generateRSAKeyPair = require('../../util/generateRSAKeyPair')
 const newCertificate = require('./newCertificate')
 const generateCSR = require('../../util/generateCSR')
-const config = require('../../../config/default.js')
+const config = require('../../../config')
 const saveFile = require('../../aws/s3/saveFile')
 
 const saveCertificate = (data) =>
@@ -16,17 +16,16 @@ const saveCertificate = (data) =>
     })
   )
 
-const createCertificate = (certUrl, certInfo, acctKeyPair) => (authorizations) =>
+const createCertificate = (certInfo, acctKeyPair, nonceUrl, url) => finalizeUrl =>
   generateRSAKeyPair()
   .then(domainKeypair =>
     generateCSR(domainKeypair, certInfo.domains)
-    .then(newCertificate(acctKeyPair, authorizations, certUrl))
-    .then((certData) =>
+    .then(newCertificate(acctKeyPair, finalizeUrl, nonceUrl, url))
+    .then(cert =>
       saveCertificate({
         key: certInfo.key,
         keypair: domainKeypair,
-        cert: certData.cert,
-        issuerCert: certData.issuerCert
+        cert,
       })
     )
   )
