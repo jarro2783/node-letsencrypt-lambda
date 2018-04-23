@@ -1,5 +1,5 @@
 {
-  "name": "node-acme-lambda",
+  "name": "node-letsencrypt-lambda",
   "version": "1.0.0",
   "description": "Free ACME certificate management for CloudFront/AWS written in nodejs",
   "main": "app.js",
