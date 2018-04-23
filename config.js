@@ -8,6 +8,6 @@ module.exports = {
   'acme-account-file': process.env.ACME_ACCOUNT_FILE,
   'acme-account-email': process.env.ACME_ACCOUNT_EMAIL,
   'acme-account-key-bits': 2048,
-  'acme-directory-url': process.env.USE_PRODUCTION ? 'https://acme-v01.api.letsencrypt.org' : 'https://acme-staging.api.letsencrypt.org',
+  'acme-directory-url': process.env.USE_PRODUCTION ? 'https://acme-v02.api.letsencrypt.org' : 'https://acme-staging-v02.api.letsencrypt.org',
   'region': process.env.AWS_REGION || 'us-east-1'
 }
